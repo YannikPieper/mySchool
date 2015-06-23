@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">mySchool</string>
+
+
+    <string name="title_section1">Anfragen</string>
+    <string name="title_section2">Ausstehende Noten</string>
+    <string name="title_section3">Anstehende GFS</string>
+    <string name="title_section4">Vergebene Noten</string>
+    <string name="title_section5">Anforderungen</string>
+    <string name="title_section6">Kursliste</string>
+
+
+    <string name="title_section7">Meine GFS</string>
+    <string name="title_section8">Lehrer Anforderungen</string>
+    <string name="title_section9">Anstehende GFS</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_student_uebersicht">studentUebersicht</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+</resources>
