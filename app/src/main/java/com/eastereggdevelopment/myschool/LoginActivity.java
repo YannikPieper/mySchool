@@ -1,75 +1,95 @@
 package com.eastereggdevelopment.myschool;
 
-import android.app.PendingIntent;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.SeekBar;
-import android.widget.Switch;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.eastereggdevelopment.myschool.R;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class LoginActivity extends ActionBarActivity {
+
+public class LoginActivity extends Activity {
+    EditText username,password,res_email,code;
+    Button login,cont,cont_code,cancel,cancel1;
+    String usernametxt,passwordtxt,email_res_txt,code_txt;
+    List<NameValuePair> params;
+    SharedPreferences pref;
+    Dialog reset;
+    ServerRequest sr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        sr = new ServerRequest();
 
-        Choose();
-    }
+        username = (EditText)findViewById(R.id.Username); //Get Access to the different views of the activity_login.xml file
+        password = (EditText)findViewById(R.id.Password);
+        login = (Button)findViewById(R.id.LoginButton);
 
-    public void Choose()
-    {
-    final Button buttonTeacher = (Button) this.findViewById(R.id.buttonTeacher);
+        pref = getSharedPreferences("AppPref", MODE_PRIVATE);
 
-    buttonTeacher.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {  //Set the OnClickListener for the login Button
 
-        public void onClick(View v) {
 
-            Intent intent1 = new Intent(getBaseContext(), uebersicht.class); //Create a new service to start the selfie countdown
-            startActivity(intent1);
-        }
+            @Override
+            public void onClick(View view) {
+                usernametxt = username.getText().toString();
+                passwordtxt = password.getText().toString();
+                params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("username", usernametxt));
+                params.add(new BasicNameValuePair("password", passwordtxt));
+                ServerRequest sr = new ServerRequest();
+                JSONObject json = sr.getJSON("http://10.0.2.2:8080/startup_log",params);
+                if(json != null){
+                    try{
+                        String jsonstr = json.getString("response");
 
-    });
+                        if(json.getBoolean("res")){
+                            String token = json.getString("token");
+                            String grav = json.getString("grav");
+                            SharedPreferences.Editor edit = pref.edit();
+                            //Storing Data using SharedPreferences
+                            edit.putString("token", token);
+                            edit.putString("grav", grav);
+                            edit.commit();
+                            Intent teacheractivity = new Intent(LoginActivity.this,NavigationDrawerFragmentTeacher.class);
 
-    final Button buttonStudent = (Button) this.findViewById(R.id.buttonStudent);
+                            startActivity(teacheractivity);
+                            finish();
+                        }
 
-    buttonStudent.setOnClickListener(new View.OnClickListener() {
+                        Toast.makeText(getApplication(),jsonstr,Toast.LENGTH_LONG).show();
 
-         public void onClick(View v) {
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Server Connection failed",Toast.LENGTH_LONG).show();
 
-                Intent intent1 = new Intent(getBaseContext(), studentUebersicht.class); //Create a new service to start the selfie countdown
-                startActivity(intent1);
+                }
             }
-
         });
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
 }

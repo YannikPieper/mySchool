@@ -54,32 +54,32 @@ public class uebersicht extends ActionBarActivity
         switch (position +1) {
             case 1:
                 fragmentManagerTeacher.beginTransaction()
-                    .replace(R.id.container, AnfragenFragment.newInstance(position + 1))
+                    .replace(R.id.containerTeacher, AnfragenFragment.newInstance(position + 1))
                     .commit();
                 break;
             case 2:
                 fragmentManagerTeacher.beginTransaction()
-                        .replace(R.id.container, ANotenFragment.newInstance(position + 1))
+                        .replace(R.id.containerTeacher, ANotenFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 3:
                 fragmentManagerTeacher.beginTransaction()
-                        .replace(R.id.container, gfsFragment.newInstance(position + 1))
+                        .replace(R.id.containerTeacher, gfsFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 4:
                 fragmentManagerTeacher.beginTransaction()
-                        .replace(R.id.container, VNotenFragment.newInstance(position + 1))
+                        .replace(R.id.containerTeacher, VNotenFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 5:
                 fragmentManagerTeacher.beginTransaction()
-                        .replace(R.id.container, AnforderungenFragment.newInstance(position + 1))
+                        .replace(R.id.containerTeacher, AnforderungenFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 6:
                 fragmentManagerTeacher.beginTransaction()
-                        .replace(R.id.container, KurslisteFragment.newInstance(position + 1))
+                        .replace(R.id.containerTeacher, KurslisteFragment.newInstance(position + 1))
                         .commit();
                 break;
 

@@ -1,25 +1,62 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#ff1e90ff"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.eastereggdevelopment.myschool.LoginActivity">
 
-    <Button
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Teacher"
-        android:id="@+id/buttonTeacher"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/Username"
+        android:layout_gravity="center"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:hint="Username" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/Password"
+        android:hint="Password"
+        android:layout_below="@+id/Username"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Remember me"
+        android:id="@+id/checkBox"
+        android:hint="Remember me"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/Password"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Student"
-        android:id="@+id/buttonStudent"
-        android:layout_below="@+id/buttonTeacher"
-        android:layout_centerHorizontal="true" />
+        android:text="Login"
+        android:id="@+id/LoginButton"
+        android:background="#ff00caff"
+        style="@style/Base.TextAppearance.AppCompat.Inverse"
+        android:elegantTextHeight="false"
+        android:focusableInTouchMode="true"
+        android:ellipsize="middle"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="43dp" />
+
 
 </RelativeLayout>
